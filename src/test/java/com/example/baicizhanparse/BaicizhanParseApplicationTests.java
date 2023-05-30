@@ -15,7 +15,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @SpringBootTest
@@ -33,13 +35,19 @@ class BaicizhanParseApplicationTests {
         ObjectMapper objectMapper = new ObjectMapper();
         List<Roadmap> roadmapList = objectMapper.readValue(json, new TypeReference<>() {});
 
+        List<Dict> dictList = new ArrayList<>();
         for (Roadmap roadmap : roadmapList) {
             QueryWrapper<Dict> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("topic_id", roadmap.getTopicId().toString());
-            List<Dict> dictList = dictDao.selectList(queryWrapper);
-            String wordList =  dictList.stream().map(Dict::getWord).collect(Collectors.joining("_____"));
-            System.out.println(roadmap.getTopicId() + "  " + wordList);
+//            List<Dict> dictList = dictDao.selectList(queryWrapper);
+//            String wordList =  dictList.stream().map(Dict::getWord).collect(Collectors.joining("_____"));
+//            System.out.println(roadmap.getTopicId() + "  " + wordList);
+            Dict dict = dictDao.selectOne(queryWrapper);
+            if(dict != null && Objects.equals(dict.getWord(),roadmap.getTopicId().toString())){
+                dictList.add(dict);
+            }
         }
+        System.out.println(dictList.size());
 
 
 
