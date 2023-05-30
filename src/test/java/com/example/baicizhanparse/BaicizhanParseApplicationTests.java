@@ -30,7 +30,6 @@ class BaicizhanParseApplicationTests {
 
     @Test
     void contextLoads() throws IOException {
-        System.out.println(dictDao.selectCount(null));
         String json = Files.asCharSource(jsonFile, Charset.defaultCharset()).read();
         ObjectMapper objectMapper = new ObjectMapper();
         List<Roadmap> roadmapList = objectMapper.readValue(json, new TypeReference<>() {});
