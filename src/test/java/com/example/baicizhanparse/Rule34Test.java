@@ -49,7 +49,7 @@ public class Rule34Test {
             }
             for (Element row : elements) {
                 for (Element tag : row.select("span > a")) {
-//                    System.out.println(tag.html());
+                    System.out.println(tag.html());
                 }
             }
         } else {
