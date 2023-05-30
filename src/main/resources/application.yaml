@@ -2,7 +2,7 @@ spring:
   datasource:
     driver-class-name: org.sqlite.JDBC
     password: ''
-    url: jdbc:sqlite:../metadata/lookup.db
+    url: jdbc:sqlite:metadata/lookup.db
     username: ''
 mybatis-plus:
   configuration:
