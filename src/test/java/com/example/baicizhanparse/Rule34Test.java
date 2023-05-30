@@ -13,7 +13,7 @@ public class Rule34Test {
     public static void main(String[] args) throws IOException {
         File[] rule34HtmlList = new File("metadata/Rule34").listFiles();
         for (File rule34Html : rule34HtmlList) {
-            if(rule34Html.getName().contains("631")){
+            if(rule34Html.getName().contains("")){
                 parseHtml(rule34Html);
             }
         }
@@ -35,9 +35,10 @@ public class Rule34Test {
                 System.out.println("---------too much");
             }
             // Process each element
-            for (Element element : elements) {
-                // Do something with the element
-                System.out.println(element.html());
+            for (Element row : elements) {
+                for (Element tag : row.select("span > a")) {
+                    System.out.println(tag.html());
+                }
             }
         } else {
             System.out.println("No elements found with XPath expression: " + cssExpression);
