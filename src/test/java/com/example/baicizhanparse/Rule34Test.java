@@ -29,9 +29,7 @@ public class Rule34Test {
             search = searchInput.get(0).attr("value");
         }
 
-
         Elements elements = doc.select("html body#body div#content table.highlightable tbody tr td");
-
         if (!elements.isEmpty()) {
             if(elements.toString().contains(no_results_found)){
                 System.out.println(search + " No results found");
@@ -46,7 +44,7 @@ public class Rule34Test {
                 }
             }
         } else {
-            System.out.println("No elements found with XPath expression: " + cssExpression);
+            System.out.println("No elements found with XPath expression");
         }
     }
 
