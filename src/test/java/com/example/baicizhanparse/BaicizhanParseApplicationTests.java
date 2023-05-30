@@ -46,9 +46,16 @@ class BaicizhanParseApplicationTests {
         for (Dict dict : dictList) {
             System.out.println(dict.getWord());
         }
+    }
 
-
-
+    public static void main(String[] args) {
+        for (char i = 'a'; i <= 'z'; i++) {
+            for (char j = 'a'; j <= 'z'; j++) {
+                for (char k = 'a'; k <= 'z'; k++) {
+                    System.out.println("https://rule34.xxx/index.php?page=tags&s=list&tags="+i + j + k +"*&sort=asc&order_by=updated");
+                }
+            }
+        }
 
     }
 
