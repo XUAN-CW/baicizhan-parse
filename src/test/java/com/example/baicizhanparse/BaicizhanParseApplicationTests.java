@@ -43,7 +43,7 @@ class BaicizhanParseApplicationTests {
 //            String wordList =  dictList.stream().map(Dict::getWord).collect(Collectors.joining("_____"));
 //            System.out.println(roadmap.getTopicId() + "  " + wordList);
             Dict dict = dictDao.selectOne(queryWrapper);
-            if(dict != null && Objects.equals(dict.getTopicId(),roadmap.getTopicId().toString())){
+            if(dict != null && Objects.equals(dict.getTopicId(),roadmap.getTopicId())){
                 dictList.add(dict);
             }
         }
