@@ -2,6 +2,7 @@ package com.example.baicizhanparse.entity;
 
 
 import lombok.Data;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.io.Serializable;
 
