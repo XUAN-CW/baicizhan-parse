@@ -30,11 +30,8 @@ public class Rule34Test {
         }
 
 
-        // Use XPath expression to retrieve elements
-        String cssExpression = "html body#body div#content table.highlightable tbody tr td";
-        Elements elements = doc.select(cssExpression);
+        Elements elements = doc.select("html body#body div#content table.highlightable tbody tr td");
 
-        // Check if any matching elements are found
         if (!elements.isEmpty()) {
             if(elements.toString().contains(no_results_found)){
                 System.out.println(search + " No results found");
