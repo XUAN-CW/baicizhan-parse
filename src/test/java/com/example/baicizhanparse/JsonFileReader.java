@@ -1,5 +1,6 @@
 package com.example.baicizhanparse;
 
+import com.example.baicizhanparse.entity.Roadmap;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.io.Files;

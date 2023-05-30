@@ -1,4 +1,4 @@
-package com.example.baicizhanparse;
+package com.example.baicizhanparse.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
