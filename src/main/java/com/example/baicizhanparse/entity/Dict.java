@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @since 2023-05-30 14:00:25
  */
 @Data
-@TableName("dict_c")
+@TableName("dict_bcz")
 public class Dict {
 
     private Integer topicId;
