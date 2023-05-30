@@ -33,7 +33,9 @@ public class Rule34Test {
             }
             if(too_much_result.matcher(elements.toString()).find()){
                 elements = doc.select("html body#body div#content div form table.form tbody tr td div.awesomplete input#name");
-
+                for (Element element : elements) {
+                    System.out.println(element.attr("value"));
+                }
 
 
                 return;
