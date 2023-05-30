@@ -55,7 +55,7 @@ class BaicizhanParseApplicationTests {
         for (char i = 'a'; i <= 'z'; i++) {
             for (char j = 'a'; j <= 'z'; j++) {
                 for (char k = 'a'; k <= 'z'; k++) {
-                    stringList.add("https://rule34.xxx/index.php?page=tags&s=list&tags="+i + j + k +"*&sort=asc&order_by=updated");
+                    stringList.add("https://rule34.xxx/index.php?page=tags&s=list&tags="+i + j + k +"*&sort=asc&order_by=tag");
                 }
             }
         }
