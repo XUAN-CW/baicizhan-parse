@@ -26,11 +26,10 @@ class BaicizhanParseApplicationTests {
     @Autowired
     DictDao dictDao;
 
-    File jsonFile = new File("metadata/road_map_621.baicizhan.json");
 
     @Test
     void contextLoads() throws IOException {
-        String json = Files.asCharSource(jsonFile, Charset.defaultCharset()).read();
+        String json = Files.asCharSource(new File("metadata/road_map_621.baicizhan.json"), Charset.defaultCharset()).read();
         ObjectMapper objectMapper = new ObjectMapper();
         List<Roadmap> roadmapList = objectMapper.readValue(json, new TypeReference<>() {});
 
