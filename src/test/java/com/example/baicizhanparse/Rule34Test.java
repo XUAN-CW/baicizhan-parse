@@ -28,7 +28,7 @@ public class Rule34Test {
         if(searchInput.size() == 1){
             search = searchInput.get(0).attr("value");
         }
-        
+
         for (Element element : searchInput) {
             System.out.println(element.attr("value"));
         }
@@ -44,6 +44,7 @@ public class Rule34Test {
                 System.out.println("-----------------------No results found");
             }
             if(too_much_result.matcher(elements.toString()).find()){
+                System.out.println(search + " too much");
                 return;
             }
             for (Element row : elements) {
