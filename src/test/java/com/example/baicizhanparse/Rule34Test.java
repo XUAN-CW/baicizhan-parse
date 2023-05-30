@@ -44,6 +44,6 @@ public class Rule34Test {
         }
     }
 
-    static final Pattern regex = Pattern.compile("results found, refine your search");
+    static final Pattern regex = Pattern.compile("\\d+.+results found, refine your search");
 
 }
