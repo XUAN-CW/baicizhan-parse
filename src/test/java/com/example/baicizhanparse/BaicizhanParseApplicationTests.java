@@ -34,7 +34,6 @@ class BaicizhanParseApplicationTests {
         List<Roadmap> roadmapList = objectMapper.readValue(json, new TypeReference<>() {});
 
         for (Roadmap roadmap : roadmapList) {
-            System.out.println(roadmap.getTopicId());
             QueryWrapper<Dict> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("topic_id", roadmap.getTopicId().toString());
             List<Dict> dictList = dictDao.selectList(queryWrapper);
