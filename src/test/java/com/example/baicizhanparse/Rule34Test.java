@@ -34,7 +34,6 @@ public class Rule34Test {
             if(too_much_result.matcher(elements.toString()).find()){
                 System.out.println("---------too much");
             }
-            // Process each element
             for (Element row : elements) {
                 for (Element tag : row.select("span > a")) {
                     System.out.println(tag.html());
