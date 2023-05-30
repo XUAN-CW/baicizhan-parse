@@ -13,7 +13,7 @@ public class Rule34Test {
     public static void main(String[] args) throws IOException {
         File[] rule34HtmlList = new File("metadata/Rule34").listFiles();
         for (File rule34Html : rule34HtmlList) {
-            if(rule34Html.getName().contains("not_found")){
+            if(rule34Html.getName().contains("631")){
                 parseHtml(rule34Html);
             }
         }
