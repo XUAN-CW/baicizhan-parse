@@ -32,11 +32,15 @@ public class Rule34Test {
                 System.out.println("-----------------------No results found");
             }
             if(too_much_result.matcher(elements.toString()).find()){
-                System.out.println("---------too much");
+                elements = doc.select("html body#body div#content div form table.form tbody tr td div.awesomplete input#name");
+
+
+
+                return;
             }
             for (Element row : elements) {
                 for (Element tag : row.select("span > a")) {
-                    System.out.println(tag.html());
+//                    System.out.println(tag.html());
                 }
             }
         } else {
