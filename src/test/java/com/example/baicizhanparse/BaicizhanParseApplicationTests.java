@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @SpringBootTest
 class BaicizhanParseApplicationTests {
@@ -36,8 +37,9 @@ class BaicizhanParseApplicationTests {
             System.out.println(roadmap.getTopicId());
             QueryWrapper<Dict> queryWrapper = new QueryWrapper<>();
             queryWrapper.select("topic_id", roadmap.getTopicId().toString());
-            Dict dict = dictDao.selectOne(queryWrapper);
-            System.out.println(dict);
+            List<Dict> dictList = dictDao.selectList(queryWrapper);
+            String wordList =  dictList.stream().map(Dict::getWord).collect(Collectors.joining("_____"));
+            System.out.println(roadmap.getTopicId() + "  " + wordList);
         }
 
 
