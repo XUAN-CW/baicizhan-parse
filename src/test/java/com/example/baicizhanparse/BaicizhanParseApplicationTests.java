@@ -15,7 +15,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -48,7 +50,8 @@ class BaicizhanParseApplicationTests {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        List<String> stringList = new ArrayList<>(3000);
         for (char i = 'a'; i <= 'z'; i++) {
             for (char j = 'a'; j <= 'z'; j++) {
                 for (char k = 'a'; k <= 'z'; k++) {
@@ -56,7 +59,7 @@ class BaicizhanParseApplicationTests {
                 }
             }
         }
-
+        Files.asCharSink(new File("url.txt"), StandardCharsets.UTF_8).writeLines(stringList);
     }
 
 }
