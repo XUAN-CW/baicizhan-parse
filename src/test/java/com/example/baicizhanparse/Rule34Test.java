@@ -7,12 +7,13 @@ import org.jsoup.select.Elements;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 public class Rule34Test {
     public static void main(String[] args) throws IOException {
         File[] rule34HtmlList = new File("metadata/Rule34").listFiles();
         for (File rule34Html : rule34HtmlList) {
-            if(rule34Html.getName().contains("631")){
+            if(rule34Html.getName().contains("not_found")){
                 parseHtml(rule34Html);
             }
         }
@@ -27,6 +28,12 @@ public class Rule34Test {
 
         // Check if any matching elements are found
         if (!elements.isEmpty()) {
+            if(elements.toString().contains("No results found, refine your search.")){
+                System.out.println("-----------------------No results found");
+            }
+            if(regex.matcher(elements.toString()).matches()){
+                System.out.println("---------too much");
+            }
             // Process each element
             for (Element element : elements) {
                 // Do something with the element
@@ -36,5 +43,7 @@ public class Rule34Test {
             System.out.println("No elements found with XPath expression: " + cssExpression);
         }
     }
+
+    static final Pattern regex = Pattern.compile("\\d+.+results found, refine your search.");
 
 }
