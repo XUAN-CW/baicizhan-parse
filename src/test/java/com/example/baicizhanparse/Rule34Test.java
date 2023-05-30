@@ -22,6 +22,18 @@ public class Rule34Test {
 
     public static void parseHtml(File rule34Html) throws IOException {
         Document doc = Jsoup.parse(rule34Html, "UTF-8");
+
+        Elements searchInput = doc.select("html body#body div#content div form table.form tbody tr td div.awesomplete input#name");
+        String search = null;
+        if(searchInput.size() == 1){
+            search = searchInput.get(0).attr("value");
+        }
+        
+        for (Element element : searchInput) {
+            System.out.println(element.attr("value"));
+        }
+
+
         // Use XPath expression to retrieve elements
         String cssExpression = "html body#body div#content table.highlightable tbody tr td";
         Elements elements = doc.select(cssExpression);
@@ -32,12 +44,6 @@ public class Rule34Test {
                 System.out.println("-----------------------No results found");
             }
             if(too_much_result.matcher(elements.toString()).find()){
-                elements = doc.select("html body#body div#content div form table.form tbody tr td div.awesomplete input#name");
-                for (Element element : elements) {
-                    System.out.println(element.attr("value"));
-                }
-
-
                 return;
             }
             for (Element row : elements) {
