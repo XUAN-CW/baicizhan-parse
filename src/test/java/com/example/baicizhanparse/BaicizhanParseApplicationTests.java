@@ -1,6 +1,8 @@
 package com.example.baicizhanparse;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.baicizhanparse.dao.DictDao;
+import com.example.baicizhanparse.entity.Dict;
 import com.example.baicizhanparse.entity.Roadmap;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,6 +34,10 @@ class BaicizhanParseApplicationTests {
 
         for (Roadmap roadmap : roadmapList) {
             System.out.println(roadmap.getTopicId());
+            QueryWrapper<Dict> queryWrapper = new QueryWrapper<>();
+            queryWrapper.select("topic_id", roadmap.getTopicId().toString());
+            Dict dict = dictDao.selectOne(queryWrapper);
+            System.out.println(dict);
         }
 
 
