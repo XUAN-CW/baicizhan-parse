@@ -4,6 +4,6 @@ spring:
     password: ''
     url: jdbc:sqlite:metadata/lookup.db
     username: ''
-mybatis-plus:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#mybatis-plus:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
