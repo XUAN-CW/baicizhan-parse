@@ -29,10 +29,6 @@ public class Rule34Test {
             search = searchInput.get(0).attr("value");
         }
 
-        for (Element element : searchInput) {
-            System.out.println(element.attr("value"));
-        }
-
 
         // Use XPath expression to retrieve elements
         String cssExpression = "html body#body div#content table.highlightable tbody tr td";
@@ -44,16 +40,16 @@ public class Rule34Test {
                 System.out.println("-----------------------No results found");
             }
             if(too_much_result.matcher(elements.toString()).find()){
-                System.out.println(search + " too much");
+//                System.out.println(search + " too much");
                 return;
             }
             for (Element row : elements) {
                 for (Element tag : row.select("span > a")) {
-                    System.out.println(tag.html());
+//                    System.out.println(tag.html());
                 }
             }
         } else {
-            System.out.println("No elements found with XPath expression: " + cssExpression);
+//            System.out.println("No elements found with XPath expression: " + cssExpression);
         }
     }
 
