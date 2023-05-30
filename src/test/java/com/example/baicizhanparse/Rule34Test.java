@@ -28,7 +28,7 @@ public class Rule34Test {
 
         // Check if any matching elements are found
         if (!elements.isEmpty()) {
-            if(elements.toString().contains("No results found, refine your search.")){
+            if(elements.toString().contains(no_results_found)){
                 System.out.println("-----------------------No results found");
             }
             if(too_much_result.matcher(elements.toString()).find()){
@@ -44,6 +44,7 @@ public class Rule34Test {
         }
     }
 
+    private static final String no_results_found = "No results found, refine your search.";
     private static final Pattern too_much_result = Pattern.compile("\\d+.+results found, refine your search");
 
 }
