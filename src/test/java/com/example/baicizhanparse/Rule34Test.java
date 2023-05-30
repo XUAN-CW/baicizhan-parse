@@ -37,7 +37,7 @@ public class Rule34Test {
         // Check if any matching elements are found
         if (!elements.isEmpty()) {
             if(elements.toString().contains(no_results_found)){
-                System.out.println("-----------------------No results found");
+                System.out.println(search + " No results found");
             }
             if(too_much_result.matcher(elements.toString()).find()){
 //                System.out.println(search + " too much");
