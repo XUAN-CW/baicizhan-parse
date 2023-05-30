@@ -43,6 +43,9 @@ class BaicizhanParseApplicationTests {
             }
         }
         System.out.println(dictList.size());
+        for (Dict dict : dictList) {
+            System.out.println(dict.getWord());
+        }
 
 
 
