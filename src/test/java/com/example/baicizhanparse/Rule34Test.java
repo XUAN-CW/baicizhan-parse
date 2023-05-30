@@ -49,7 +49,7 @@ public class Rule34Test {
                 }
             }
         } else {
-//            System.out.println("No elements found with XPath expression: " + cssExpression);
+            System.out.println("No elements found with XPath expression: " + cssExpression);
         }
     }
 
