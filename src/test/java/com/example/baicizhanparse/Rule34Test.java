@@ -31,7 +31,7 @@ public class Rule34Test {
             if(elements.toString().contains("No results found, refine your search.")){
                 System.out.println("-----------------------No results found");
             }
-            if(regex.matcher(elements.toString()).matches()){
+            if(regex.matcher(elements.toString()).find()){
                 System.out.println("---------too much");
             }
             // Process each element
@@ -44,6 +44,6 @@ public class Rule34Test {
         }
     }
 
-    static final Pattern regex = Pattern.compile("\\d+.+results found, refine your search.");
+    static final Pattern regex = Pattern.compile("results found, refine your search");
 
 }
