@@ -12,7 +12,10 @@ public class Rule34Test {
     public static void main(String[] args) throws IOException {
         File[] rule34HtmlList = new File("metadata/Rule34").listFiles();
         for (File rule34Html : rule34HtmlList) {
-            parseHtml(rule34Html);
+            if(rule34Html.getName().contains("631")){
+                parseHtml(rule34Html);
+            }
+
             break;
         }
     }
@@ -21,7 +24,7 @@ public class Rule34Test {
     public static void parseHtml(File rule34Html) throws IOException {
         Document doc = Jsoup.parse(rule34Html, "UTF-8");
         // Use XPath expression to retrieve elements
-        String xpathExpression = "html body#body div#content table.highlightable tbody tr td";
+        String xpathExpression = "html body#body div#content table.highlightable tbody tr td span";
         Elements elements = doc.select(xpathExpression);
 
         // Check if any matching elements are found
