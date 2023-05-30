@@ -17,7 +17,7 @@ import java.io.Serializable;
 @TableName("dict_bcz")
 public class Dict {
 
-    private Integer topicId;
+    private Long topicId;
 
     private String word;
 
@@ -27,6 +27,6 @@ public class Dict {
 
     private String freq;
 
-    private Integer wordLength;
+    private Long wordLength;
 }
 
