@@ -38,9 +38,6 @@ class BaicizhanParseApplicationTests {
         for (Roadmap roadmap : roadmapList) {
             QueryWrapper<Dict> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("topic_id", roadmap.getTopicId().toString());
-//            List<Dict> dictList = dictDao.selectList(queryWrapper);
-//            String wordList =  dictList.stream().map(Dict::getWord).collect(Collectors.joining("_____"));
-//            System.out.println(roadmap.getTopicId() + "  " + wordList);
             Dict dict = dictDao.selectOne(queryWrapper);
             if(dict != null && Objects.equals(dict.getTopicId(),roadmap.getTopicId())){
                 dictList.add(dict);
