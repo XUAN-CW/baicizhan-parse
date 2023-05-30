@@ -21,7 +21,7 @@ public class Rule34Test {
     public static void parseHtml(File rule34Html) throws IOException {
         Document doc = Jsoup.parse(rule34Html, "UTF-8");
         // Use XPath expression to retrieve elements
-        String xpathExpression = "/html/body/div[1]/table/tbody/tr/";
+        String xpathExpression = "html body#body div#content table.highlightable tbody tr td";
         Elements elements = doc.select(xpathExpression);
 
         // Check if any matching elements are found
@@ -29,7 +29,7 @@ public class Rule34Test {
             // Process each element
             for (Element element : elements) {
                 // Do something with the element
-                System.out.println("XPath result: " + element.html());
+                System.out.println(element.html());
             }
         } else {
             System.out.println("No elements found with XPath expression: " + xpathExpression);
