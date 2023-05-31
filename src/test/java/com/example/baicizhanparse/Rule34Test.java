@@ -45,8 +45,7 @@ public class Rule34Test {
                     String modifiedString = search.substring(0, search.length() - 1) + i + search.substring(search.length() - 1);
                     stringList.add("https://rule34.xxx/index.php?page=tags&s=list&tags=" + modifiedString + "&sort=asc&order_by=tag");
                 }
-                Files.asCharSink(new File("url"+ search.length() +".txt"), StandardCharsets.UTF_8).writeLines(stringList);
-
+                Files.asCharSink(new File("url_"+ search +".txt"), StandardCharsets.UTF_8).writeLines(stringList);
                 return;
             }
             for (Element row : elements) {
