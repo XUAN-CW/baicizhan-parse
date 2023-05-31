@@ -35,7 +35,7 @@ public class Rule34Test {
                 System.out.println(search + " No results found");
             }
             if(too_much_result.matcher(elements.toString()).find()){
-//                System.out.println(search + " too much");
+                System.out.println(search + " too much");
                 return;
             }
             for (Element row : elements) {
