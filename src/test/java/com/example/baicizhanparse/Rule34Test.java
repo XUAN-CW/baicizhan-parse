@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 public class Rule34Test {
     public static void main(String[] args) throws IOException {
-        File[] rule34HtmlList = new File("metadata/Rule34").listFiles();
+        File[] rule34HtmlList = new File("metadata/Rule34/2").listFiles();
         for (File rule34Html : rule34HtmlList) {
             if(rule34Html.getName().contains("")){
                 parseHtml(rule34Html);
@@ -40,7 +40,7 @@ public class Rule34Test {
             }
             for (Element row : elements) {
                 for (Element tag : row.select("span > a")) {
-//                    System.out.println(tag.html());
+                    System.out.println(tag.html());
                 }
             }
         } else {
