@@ -1,5 +1,6 @@
 package com.example.baicizhanparse;
 
+import com.google.common.io.FileWriteMode;
 import com.google.common.io.Files;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -9,6 +10,7 @@ import org.jsoup.select.Elements;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -45,7 +47,7 @@ public class Rule34Test {
                     String modifiedString = search.substring(0, search.length() - 1) + i + search.substring(search.length() - 1);
                     stringList.add("https://rule34.xxx/index.php?page=tags&s=list&tags=" + modifiedString + "&sort=asc&order_by=tag");
                 }
-                Files.asCharSink(new File("url_"+ search +".txt"), StandardCharsets.UTF_8).writeLines(stringList);
+                Files.asCharSink(new File("url_"+ search.length() +".txt"), StandardCharsets.UTF_8, FileWriteMode.APPEND).writeLines(stringList);
                 return;
             }
             for (Element row : elements) {
