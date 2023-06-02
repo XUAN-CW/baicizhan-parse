@@ -49,26 +49,4 @@ class BaicizhanParseApplicationTests {
             System.out.println(dict.getWord());
         }
     }
-
-    public static void main(String[] args) throws IOException {
-//        String str = "abd*";
-//        String modifiedString = str.substring(0, str.length() - 1) + "c" + str.substring(str.length() - 1);
-//        System.out.println(modifiedString);
-//        List<String> stringList = new ArrayList<>(3000);
-//        for (char i = 'a'; i <= 'z'; i++) {
-//            for (char j = 'a'; j <= 'z'; j++) {
-////                for (char k = 'a'; k <= 'z'; k++) {
-//                    stringList.add("https://rule34.xxx/index.php?page=tags&s=list&tags="+i + j  +"*&sort=asc&order_by=tag");
-////                }
-//            }
-//        }
-        List<String> stringList = new ArrayList<>(3000);
-        for (int j = 1; j <= 1713; j++) {
-//                for (char k = 'a'; k <= 'z'; k++) {
-                    stringList.add("https://konachan.com/tag?page=" + j);
-//                }
-            }
-        Files.asCharSink(new File("url.txt"), StandardCharsets.UTF_8).writeLines(stringList);
-    }
-
 }
