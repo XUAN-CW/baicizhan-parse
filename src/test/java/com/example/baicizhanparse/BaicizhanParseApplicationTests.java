@@ -46,8 +46,8 @@ class BaicizhanParseApplicationTests {
         List<String> wordList = Files.readLines(new File("word.txt"), Charsets.UTF_8);
         HashSet<String> stringSet = new HashSet<>(wordList);
         System.out.println(dictList.size());
-        List<String> dictWordList = wordList.stream().filter(s -> !stringSet.contains(s)).toList();
-        for (String dict : dictWordList) {
+        List<Dict> dictWordList = dictList.stream().filter(dict -> !stringSet.contains(dict.getWord())).toList();
+        for (Dict dict : dictWordList) {
             System.out.println(dict);
         }
     }
