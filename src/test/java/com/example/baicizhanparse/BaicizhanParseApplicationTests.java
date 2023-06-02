@@ -17,10 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @SpringBootTest
@@ -47,9 +44,11 @@ class BaicizhanParseApplicationTests {
         }
 
         List<String> wordList = Files.readLines(new File("word.txt"), Charsets.UTF_8);
+        HashSet<String> stringSet = new HashSet<>(wordList);
         System.out.println(dictList.size());
-        for (Dict dict : dictList) {
-            System.out.println(dict.getWord());
+        List<String> dictWordList = wordList.stream().filter(stringSet::contains).sorted().toList();
+        for (String dict : dictWordList) {
+            System.out.println(dict);
         }
     }
 }
