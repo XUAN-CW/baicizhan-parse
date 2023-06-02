@@ -6,6 +6,7 @@ import com.example.baicizhanparse.entity.Dict;
 import com.example.baicizhanparse.entity.Roadmap;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Test;
@@ -44,6 +45,8 @@ class BaicizhanParseApplicationTests {
                 dictList.add(dict);
             }
         }
+
+        List<String> wordList = Files.readLines(new File("word.txt"), Charsets.UTF_8);
         System.out.println(dictList.size());
         for (Dict dict : dictList) {
             System.out.println(dict.getWord());
