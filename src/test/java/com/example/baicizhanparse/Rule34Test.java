@@ -61,7 +61,7 @@ public class Rule34Test {
             search = searchInput.get(0).attr("value");
         }
 
-        Elements elements = doc.select("html body#body div#content table.highlightable tbody tr td");
+        Elements elements = doc.select("html body#body div#content table.highlightable tbody tr");
         if (!elements.isEmpty()) {
             if(elements.toString().contains(no_results_found)){
                 System.out.println(search + " No results found");
@@ -77,6 +77,13 @@ public class Rule34Test {
                 return resultList;
             }
             for (Element row : elements) {
+                String posts =  row.firstElementChild().html();
+                if("Posts".equals(posts)){
+                    continue;
+                }
+                if(Long.parseLong(posts) < 10){
+                    continue;
+                }
                 for (Element tag : row.select("span > a")) {
 //                    System.out.println(tag.html());
                     resultList.add(tag.html());
