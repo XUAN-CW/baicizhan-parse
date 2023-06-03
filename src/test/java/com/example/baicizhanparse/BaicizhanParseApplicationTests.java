@@ -54,7 +54,7 @@ class BaicizhanParseApplicationTests {
         for (String dictWord : dictWordList) {
             System.out.println(dictWord);
         }
-        Files.asCharSink(new File("baicizhan_word.txt"), StandardCharsets.UTF_8).writeLines(wordList);
+        Files.asCharSink(new File("baicizhan_word.txt"), StandardCharsets.UTF_8).writeLines(dictWordList);
 
     }
 }
