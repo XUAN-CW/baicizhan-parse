@@ -43,17 +43,33 @@ class BaicizhanParseApplicationTests {
             }
         }
 
-        List<String> wordList = Files.readLines(new File("word.txt"), Charsets.UTF_8);
-        HashSet<String> stringSet = new HashSet<>(wordList);
-        System.out.println(dictList.size());
-        List<String> dictWordList = dictList.stream()
-                .map(Dict::getWord)
-                .filter(word -> !stringSet.contains(word))
-                .sorted()
-                .toList();
-        for (String dictWord : dictWordList) {
-            System.out.println(dictWord);
+        Integer maxWordLength = dictList.stream().map(dict -> dict.getWord().length())
+                .max(Integer::compareTo).get();
+        Integer maxAccentLength = dictList.stream().map(dict -> dict.getAccent().length())
+                .max(Integer::compareTo).get();
+
+        String formatter = "%-"+ (maxWordLength + 1) + "s " + "%-" + (maxAccentLength + 1) + "s " +"%s";
+        System.out.println(formatter);
+        List<String> dictWordList = new ArrayList<>(10000);
+        for (Dict dict : dictList) {
+            String str = String.format(formatter, dict.getWord(), dict.getAccent(), dict.getMeanCn());
+            System.out.println(str);
+            dictWordList.add(str);
         }
+
+        dictList = dictList.stream().sorted().collect(Collectors.toList());
+
+//        List<String> wordList = Files.readLines(new File("word.txt"), Charsets.UTF_8);
+//        HashSet<String> stringSet = new HashSet<>(wordList);
+//        System.out.println(dictList.size());
+//        List<String> dictWordList = dictList.stream()
+//                .map(Dict::getWord)
+//                .filter(word -> stringSet.contains(word))
+//                .sorted()
+//                .toList();
+//        for (String dictWord : dictWordList) {
+//            System.out.println(dictWord);
+//        }
         Files.asCharSink(new File("baicizhan_word.txt"), StandardCharsets.UTF_8).writeLines(dictWordList);
 
     }
