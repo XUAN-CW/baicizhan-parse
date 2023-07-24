@@ -57,7 +57,7 @@ class BaicizhanParseApplicationTests {
             dictWordList.add(str);
         }
 
-        dictList = dictList.stream().sorted().collect(Collectors.toList());
+        dictWordList = dictWordList.stream().sorted().collect(Collectors.toList());
 
 //        List<String> wordList = Files.readLines(new File("word.txt"), Charsets.UTF_8);
 //        HashSet<String> stringSet = new HashSet<>(wordList);
