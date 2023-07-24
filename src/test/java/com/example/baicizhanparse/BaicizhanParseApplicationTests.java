@@ -50,14 +50,20 @@ class BaicizhanParseApplicationTests {
 
         String formatter = "%-"+ (maxWordLength + 1) + "s " + "%-" + (maxAccentLength + 1) + "s " +"%s";
         System.out.println(formatter);
-        List<String> dictWordList = new ArrayList<>(10000);
-        for (Dict dict : dictList) {
-            String str = String.format(formatter, dict.getWord(), dict.getAccent(), dict.getMeanCn());
-            System.out.println(str);
-            dictWordList.add(str);
-        }
 
-        dictWordList = dictWordList.stream().sorted().collect(Collectors.toList());
+        List<String> dictWordList = dictList.stream()
+                .map(dict -> String.format(formatter, dict.getWord(), dict.getAccent(), dict.getMeanCn()))
+                .sorted()
+                .collect(Collectors.toList());
+
+//        List<String> dictWordList = new ArrayList<>(10000);
+//        for (Dict dict : dictList) {
+//            String str = String.format(formatter, dict.getWord(), dict.getAccent(), dict.getMeanCn());
+//            System.out.println(str);
+//            dictWordList.add(str);
+//        }
+//
+//        dictWordList = dictWordList.stream().sorted().collect(Collectors.toList());
 
 //        List<String> wordList = Files.readLines(new File("word.txt"), Charsets.UTF_8);
 //        HashSet<String> stringSet = new HashSet<>(wordList);
