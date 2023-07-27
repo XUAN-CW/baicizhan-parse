@@ -8,8 +8,9 @@ import java.nio.file.Files;
 public class MetaJson {
     public static void main(String[] args) throws IOException {
         File inputFile = new File("./testData/allegation_zp_117_621_0_20230712135847/zp_117_621_0_20230712135847.zpk"); // Replace with the actual path to your input file
-        File meta = new File("meta.json"); // Output JPG file
+        File meta = new File("meta.json");
 
+        cut(inputFile,128,895,  meta);
         cut(inputFile,128,895,  meta);
     }
 
