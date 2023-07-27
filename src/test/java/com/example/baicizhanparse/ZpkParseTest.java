@@ -26,6 +26,7 @@ public class ZpkParseTest {
         Pattern sentencePattern = Pattern.compile("\\{\"sentence\":\\\".*?\\}" + sentenceEnd);
         Matcher sentenceMatcher = sentencePattern.matcher(metaData);
         String word = "allegation";
+        File wordSaveDir = new File(file.getParentFile(),word);
         while (sentenceMatcher.find()) {
             String jsonLikeText = sentenceMatcher.group();
             jsonLikeText = jsonLikeText.substring(0,jsonLikeText.length() - sentenceEnd.length() + 1);
@@ -33,7 +34,7 @@ public class ZpkParseTest {
             Object jsonObject = objectMapper.readValue(jsonLikeText, Object.class);
             jsonLikeText = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObject);
             System.out.println("Found sentence-like text: \n" + jsonLikeText);
-            Files.write(jsonLikeText, new File(file.getParentFile(),word+"/sentence.json"), Charsets.UTF_8);
+            Files.write(jsonLikeText, new File(wordSaveDir,"sentence.json"), Charsets.UTF_8);
         }
 
         String wordEnd = "}]}";
@@ -46,7 +47,7 @@ public class ZpkParseTest {
             Object jsonObject = objectMapper.readValue(jsonLikeText, Object.class);
             jsonLikeText = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObject);
             System.out.println("word: \n" + jsonLikeText);
-            Files.write(jsonLikeText, new File(file.getParentFile(),word+"/word.json"), Charsets.UTF_8);
+            Files.write(jsonLikeText, new File(wordSaveDir,"word.json"), Charsets.UTF_8);
         }
 
         Pattern cnMeanPattern = Pattern.compile("\\{\"cnMean\":\\{.*?\\}\\}");
@@ -57,7 +58,7 @@ public class ZpkParseTest {
             Object jsonObject = objectMapper.readValue(jsonLikeText, Object.class);
             jsonLikeText = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObject);
             System.out.println("cnMean: \n" + jsonLikeText);
-            Files.write(jsonLikeText, new File(file.getParentFile(),word+"/cnMean.json"), Charsets.UTF_8);
+            Files.write(jsonLikeText, new File(wordSaveDir,"cnMean.json"), Charsets.UTF_8);
         }
 
     }
