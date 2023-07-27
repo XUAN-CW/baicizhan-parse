@@ -10,8 +10,8 @@ public class FileHexConverter {
 //        String inputFileName = "input_file.bin";
 //        String outputFileName = "output_file.hex";
 
-        String inputFileName = "C:\\core\\Android\\baicizhan-parse\\testData\\allegation_zp_117_621_0_20230712135847.zpk\\zp_117_621_0_20230712135847.zpk"; // Replace with the actual path to your binary file
-        String outputFileName = "C:\\core\\Android\\baicizhan-parse\\testData\\allegation_zp_117_621_0_20230712135847.zpk\\d.txt"; // Replace with the desired output file path
+        String inputFileName = "./testData/allegation_zp_117_621_0_20230712135847.zpk/zp_117_621_0_20230712135847.zpk"; // Replace with the actual path to your binary file
+        String outputFileName = "./testData/allegation_zp_117_621_0_20230712135847.zpk/d.txt"; // Replace with the desired output file path
 
         try {
             byte[] hexData = readAndConvertToHex(inputFileName);

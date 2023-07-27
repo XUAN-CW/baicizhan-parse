@@ -7,8 +7,8 @@ import java.io.IOException;
 
 public class JPGExtractor {
     public static void main(String[] args) {
-        File binaryFile = new File("C:\\core\\Android\\baicizhan-parse\\testData\\allegation_zp_117_621_0_20230712135847.zpk\\zp_117_621_0_20230712135847.zpk");
-        File outputDirectory = new File("C:\\core\\Android\\baicizhan-parse\\testData\\allegation_zp_117_621_0_20230712135847.zpk\\JPG");
+        File binaryFile = new File("./testData/allegation_zp_117_621_0_20230712135847.zpk/data.txt");
+        File outputDirectory = new File("./testData//allegation_zp_117_621_0_20230712135847.zpk//JPG");
 
         outputDirectory.mkdirs();
 
