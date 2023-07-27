@@ -17,7 +17,9 @@ public class MetaJson {
         FileOutputStream fos = new FileOutputStream(outputFile);
         fos.write(jpgData);
         fos.close();
-
     }
+
+
+    
 
 }
