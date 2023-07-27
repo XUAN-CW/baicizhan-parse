@@ -11,7 +11,6 @@ public class MetaJson {
         File meta = new File("meta.json"); // Output JPG file
 
         cut(inputFile,128,895,  meta);
-        cut(inputFile,128,895,  meta);
     }
 
 
