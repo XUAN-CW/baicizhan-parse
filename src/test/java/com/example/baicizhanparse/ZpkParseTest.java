@@ -27,6 +27,7 @@ public class ZpkParseTest {
         Matcher sentenceMatcher = sentencePattern.matcher(metaData);
         String word = "allegation";
         File wordSaveDir = new File(file.getParentFile(),word);
+        wordSaveDir.mkdirs();
         while (sentenceMatcher.find()) {
             String jsonLikeText = sentenceMatcher.group();
             jsonLikeText = jsonLikeText.substring(0,jsonLikeText.length() - sentenceEnd.length() + 1);
