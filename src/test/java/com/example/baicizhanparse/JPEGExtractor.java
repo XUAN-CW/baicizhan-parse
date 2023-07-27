@@ -5,7 +5,7 @@ import java.nio.file.Files;
 
 public class JPEGExtractor {
     public static void main(String[] args) {
-        File inputFile = new File("path/to/your/input/file"); // Replace with the actual path to your input file
+        File inputFile = new File("./testData/allegation_zp_117_621_0_20230712135847/zp_117_621_0_20230712135847.zpk"); // Replace with the actual path to your input file
         File outputFile = new File("output.jpg"); // Output JPG file
 
         try {
