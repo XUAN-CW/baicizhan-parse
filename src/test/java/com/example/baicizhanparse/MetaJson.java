@@ -22,6 +22,7 @@ public class MetaJson {
         FileOutputStream fos = new FileOutputStream(saveTo);
         fos.write(jpgData);
         fos.close();
+        System.out.println(saveTo.getAbsolutePath());
         System.out.println("srcPos "+srcPos);
         System.out.println("length "+length);
         System.out.println("end "+(srcPos+length));
