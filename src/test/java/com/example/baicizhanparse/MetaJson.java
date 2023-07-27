@@ -10,16 +10,18 @@ public class MetaJson {
         File inputFile = new File("./testData/allegation_zp_117_621_0_20230712135847/zp_117_621_0_20230712135847.zpk"); // Replace with the actual path to your input file
         File outputFile = new File("meta.json"); // Output JPG file
 
-        byte[] fileData = Files.readAllBytes(inputFile.toPath());
-        byte[] jpgData = new byte[895];
-        System.arraycopy(fileData, 128, jpgData, 0, jpgData.length);
-
-        FileOutputStream fos = new FileOutputStream(outputFile);
-        fos.write(jpgData);
-        fos.close();
+        cut(inputFile,128,895,  outputFile);
     }
 
 
-    
+    private static void cut(File zpk,int srcPos,int length,File saveTo) throws IOException {
+        byte[] fileData = Files.readAllBytes(zpk.toPath());
+        byte[] jpgData = new byte[length];
+        System.arraycopy(fileData, srcPos, jpgData, 0, jpgData.length);
+
+        FileOutputStream fos = new FileOutputStream(saveTo);
+        fos.write(jpgData);
+        fos.close();
+    }
 
 }
