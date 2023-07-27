@@ -16,8 +16,8 @@ public class JpgExtractor {
             byte[] fileData = Files.toByteArray(inputFile);
 
             byte[] startMarker = { (byte) 0xFF, (byte) 0xD8, (byte) 0xFF };
-            byte[] endMarker = { (byte) 0xFF, (byte) 0xD9 };
-//            byte[] endMarker = { (byte) 0xFF, (byte) 0xD9 };
+            byte[] endMarker = { (byte) 0xD6, (byte) 0x9A };
+//            byte[] endMarker = { (byte) 0xD6, (byte) 0x9A,(byte) 0xFF, (byte) 0xD9 };
 
             int startIndex = 0;
             int count = 1;
