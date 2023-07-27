@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 
 public class ZpkParseTest {
     public static void main(String[] args) throws IOException {
-        File file = new File("./metadata//zp_117_621_0_20230712135847.zpk");
+        File file = new File("./testData/allegation_zp_117_621_0_20230712135847/zp_117_621_0_20230712135847.zpk");
         List<String> lines = Files.readLines(file, Charsets.UTF_8);
         // Process the lines as needed
         String metaData = lines.stream().findFirst().get();
