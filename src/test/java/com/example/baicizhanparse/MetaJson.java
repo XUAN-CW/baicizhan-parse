@@ -18,8 +18,6 @@ public class MetaJson {
         fos.write(jpgData);
         fos.close();
 
-        System.out.println("JPEG data extracted and saved as output.jpg.");
-
     }
 
 }
