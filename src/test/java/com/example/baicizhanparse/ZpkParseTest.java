@@ -35,7 +35,7 @@ public class ZpkParseTest {
             Object jsonObject = objectMapper.readValue(jsonLikeText, Object.class);
             jsonLikeText = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObject);
             System.out.println("Found sentence-like text: \n" + jsonLikeText);
-            Files.write(jsonLikeText, new File(wordSaveDir,"sentence.json"), Charsets.UTF_8);
+            Files.write(jsonLikeText, new File(wordSaveDir,"meta.json"), Charsets.UTF_8);
         }
 
         String wordEnd = "}]}";
@@ -48,7 +48,7 @@ public class ZpkParseTest {
             Object jsonObject = objectMapper.readValue(jsonLikeText, Object.class);
             jsonLikeText = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObject);
             System.out.println("word: \n" + jsonLikeText);
-            Files.write(jsonLikeText, new File(wordSaveDir,"word.json"), Charsets.UTF_8);
+            Files.write(jsonLikeText, new File(wordSaveDir,"resource.json"), Charsets.UTF_8);
         }
 
         Pattern cnMeanPattern = Pattern.compile("\\{\"cnMean\":\\{.*?\\}\\}");
@@ -59,7 +59,7 @@ public class ZpkParseTest {
             Object jsonObject = objectMapper.readValue(jsonLikeText, Object.class);
             jsonLikeText = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObject);
             System.out.println("cnMean: \n" + jsonLikeText);
-            Files.write(jsonLikeText, new File(wordSaveDir,"cnMean.json"), Charsets.UTF_8);
+            Files.write(jsonLikeText, new File(wordSaveDir,"wiki.json"), Charsets.UTF_8);
         }
 
     }
