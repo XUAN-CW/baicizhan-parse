@@ -79,27 +79,27 @@ public class ZpkParseTest {
             Files.write(jsonLikeText, new File(wordSaveDir,"meta.json"), Charsets.UTF_8);
         }
 
-        String wordEnd = "}]}";
-        Pattern wordPattern = Pattern.compile("\\{\"word\":\\{.*?" + wordEnd);
-        Matcher wordMatcher = wordPattern.matcher(metaDataStr);
-        while (wordMatcher.find()) {
-            String jsonLikeText = wordMatcher.group();
-            jsonLikeText = jsonLikeText.substring(0,jsonLikeText.length() - wordEnd.length() + 3);
-            ObjectMapper objectMapper = new ObjectMapper();
-            Object jsonObject = objectMapper.readValue(jsonLikeText, Object.class);
-            jsonLikeText = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObject);
-            Files.write(jsonLikeText, new File(wordSaveDir,"resource.json"), Charsets.UTF_8);
-        }
-
-        Pattern cnMeanPattern = Pattern.compile("\\{\"cnMean\":\\{.*?\\}\\}");
-        Matcher cnMeanMatcher = cnMeanPattern.matcher(metaDataStr);
-        while (cnMeanMatcher.find()) {
-            String jsonLikeText = cnMeanMatcher.group();
-            ObjectMapper objectMapper = new ObjectMapper();
-            Object jsonObject = objectMapper.readValue(jsonLikeText, Object.class);
-            jsonLikeText = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObject);
-            Files.write(jsonLikeText, new File(wordSaveDir,"wiki.json"), Charsets.UTF_8);
-        }
+//        String wordEnd = "}]}";
+//        Pattern wordPattern = Pattern.compile("\\{\"word\":\\{.*?" + wordEnd);
+//        Matcher wordMatcher = wordPattern.matcher(metaDataStr);
+//        while (wordMatcher.find()) {
+//            String jsonLikeText = wordMatcher.group();
+//            jsonLikeText = jsonLikeText.substring(0,jsonLikeText.length() - wordEnd.length() + 3);
+//            ObjectMapper objectMapper = new ObjectMapper();
+//            Object jsonObject = objectMapper.readValue(jsonLikeText, Object.class);
+//            jsonLikeText = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObject);
+//            Files.write(jsonLikeText, new File(wordSaveDir,"resource.json"), Charsets.UTF_8);
+//        }
+//
+//        Pattern cnMeanPattern = Pattern.compile("\\{\"cnMean\":\\{.*?\\}\\}");
+//        Matcher cnMeanMatcher = cnMeanPattern.matcher(metaDataStr);
+//        while (cnMeanMatcher.find()) {
+//            String jsonLikeText = cnMeanMatcher.group();
+//            ObjectMapper objectMapper = new ObjectMapper();
+//            Object jsonObject = objectMapper.readValue(jsonLikeText, Object.class);
+//            jsonLikeText = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObject);
+//            Files.write(jsonLikeText, new File(wordSaveDir,"wiki.json"), Charsets.UTF_8);
+//        }
 
 
         getJpg(file,new File(wordSaveDir,"image.jpg"));
