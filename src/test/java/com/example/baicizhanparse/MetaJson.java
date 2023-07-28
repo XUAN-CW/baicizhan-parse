@@ -15,7 +15,7 @@ public class MetaJson {
         File meta = new File("meta.json");
 
         cut(inputFile,128,811,  meta);
-        cut(inputFile,1023,2022,  new File("resource.json"));
+        cut(inputFile,939,1520,  new File("resource.json"));
     }
 
     @Test
