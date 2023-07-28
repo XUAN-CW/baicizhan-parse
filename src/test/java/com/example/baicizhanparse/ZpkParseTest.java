@@ -23,6 +23,7 @@ public class ZpkParseTest {
     @Test
     public void parseAll() throws IOException {
         List<File> zpkFileList = getZpkFileList(new File("C:\\core\\Android\\baicizhan-parse\\metadata\\baicizhan\\zpack\\621"));
+        System.out.println(zpkFileList);
         for (File fileZpk : zpkFileList) {
             parseZpk(fileZpk,new File("outcome"));
         }
