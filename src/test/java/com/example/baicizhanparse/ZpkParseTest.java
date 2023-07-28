@@ -23,7 +23,7 @@ public class ZpkParseTest {
     @Test
     public void parseAll() throws IOException {
         List<File> zpkFileList = getZpkFileList(new File("C:\\core\\Android\\baicizhan-parse\\metadata\\baicizhan\\zpack\\621"));
-        System.out.println(zpkFileList);
+        System.out.println(zpkFileList.size());
         for (File fileZpk : zpkFileList) {
             parseZpk(fileZpk,new File("outcome"));
         }
@@ -59,7 +59,6 @@ public class ZpkParseTest {
         List<String> lines = Files.readLines(file, Charsets.UTF_8);
         // Process the lines as needed
         String metaDataStr = lines.stream().findFirst().get();
-        System.out.println(metaDataStr);
 
         String sentenceEnd = "\\{\"word\"";
         Pattern sentencePattern = Pattern.compile("\\{\"sentence\":\\\".*?\\}" + sentenceEnd);
