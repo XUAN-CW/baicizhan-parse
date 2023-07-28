@@ -25,9 +25,9 @@ public class MetaJson {
         fos.close();
         Integer end = srcPos+length;
         System.out.println(saveTo.getAbsolutePath());
-        System.out.format("srcPos %-10d \n",srcPos);
-        System.out.format("length %-10d \n",length);
-        System.out.format("end %-10d \n",end);
+        System.out.format("srcPos %-10d %-10x\n",srcPos,srcPos);
+        System.out.format("length %-10d %-10x\n",length,length);
+        System.out.format("end    %-10d %-10x\n",end,end);
     }
 
 }
