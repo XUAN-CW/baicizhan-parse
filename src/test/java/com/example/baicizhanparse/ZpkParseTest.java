@@ -28,7 +28,7 @@ public class ZpkParseTest {
         Matcher sentenceMatcher = sentencePattern.matcher(metaDataStr);
 
 
-        File wordSaveDir = null;
+        File wordSaveDir = new File("outcome");
 
         while (sentenceMatcher.find()) {
             String jsonLikeText = sentenceMatcher.group();
@@ -38,7 +38,7 @@ public class ZpkParseTest {
             jsonLikeText = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(meta);
             System.out.println("Found sentence-like text: \n" + jsonLikeText);
 
-            wordSaveDir = new File(file.getParentFile(),meta.getWord());
+            wordSaveDir = new File(wordSaveDir,meta.getWord());
             wordSaveDir.mkdirs();
 
 
