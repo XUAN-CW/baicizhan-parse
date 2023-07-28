@@ -1,12 +1,18 @@
 package com.example.baicizhanparse;
 
+import org.junit.jupiter.api.Test;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 
 public class MetaJson {
-    public static void main(String[] args) throws IOException {
+
+
+
+    @Test
+    public void allegation_zp_117_621_0_20230712135847() throws IOException {
         File inputFile = new File("./testData/allegation_zp_117_621_0_20230712135847/zp_117_621_0_20230712135847.zpk"); // Replace with the actual path to your input file
         File meta = new File("meta.json");
 
