@@ -1,5 +1,6 @@
 package com.example.baicizhanparse;
 
+import com.example.baicizhanparse.entity.baicizhan.meta.Meta;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Charsets;
 import com.google.common.base.Utf8;
@@ -19,28 +20,34 @@ public class ZpkParseTest {
         File file = new File("./testData/allegation_zp_117_621_0_20230712135847/zp_117_621_0_20230712135847.zpk");
         List<String> lines = Files.readLines(file, Charsets.UTF_8);
         // Process the lines as needed
-        String metaData = lines.stream().findFirst().get();
-        System.out.println(metaData);
+        String metaDataStr = lines.stream().findFirst().get();
+        System.out.println(metaDataStr);
 
         String sentenceEnd = "\\{\"word\"";
         Pattern sentencePattern = Pattern.compile("\\{\"sentence\":\\\".*?\\}" + sentenceEnd);
-        Matcher sentenceMatcher = sentencePattern.matcher(metaData);
-        String word = "allegation";
-        File wordSaveDir = new File(file.getParentFile(),word);
-        wordSaveDir.mkdirs();
+        Matcher sentenceMatcher = sentencePattern.matcher(metaDataStr);
+
+
+        File wordSaveDir = null;
+
         while (sentenceMatcher.find()) {
             String jsonLikeText = sentenceMatcher.group();
             jsonLikeText = jsonLikeText.substring(0,jsonLikeText.length() - sentenceEnd.length() + 1);
             ObjectMapper objectMapper = new ObjectMapper();
-            Object jsonObject = objectMapper.readValue(jsonLikeText, Object.class);
-            jsonLikeText = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObject);
+            Meta meta = objectMapper.readValue(jsonLikeText, Meta.class);
+            jsonLikeText = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(meta);
             System.out.println("Found sentence-like text: \n" + jsonLikeText);
+
+            wordSaveDir = new File(file.getParentFile(),meta.getWord());
+            wordSaveDir.mkdirs();
+
+
             Files.write(jsonLikeText, new File(wordSaveDir,"meta.json"), Charsets.UTF_8);
         }
 
         String wordEnd = "}]}";
         Pattern wordPattern = Pattern.compile("\\{\"word\":\\{.*?" + wordEnd);
-        Matcher wordMatcher = wordPattern.matcher(metaData);
+        Matcher wordMatcher = wordPattern.matcher(metaDataStr);
         while (wordMatcher.find()) {
             String jsonLikeText = wordMatcher.group();
             jsonLikeText = jsonLikeText.substring(0,jsonLikeText.length() - wordEnd.length() + 3);
@@ -52,7 +59,7 @@ public class ZpkParseTest {
         }
 
         Pattern cnMeanPattern = Pattern.compile("\\{\"cnMean\":\\{.*?\\}\\}");
-        Matcher cnMeanMatcher = cnMeanPattern.matcher(metaData);
+        Matcher cnMeanMatcher = cnMeanPattern.matcher(metaDataStr);
         while (cnMeanMatcher.find()) {
             String jsonLikeText = cnMeanMatcher.group();
             ObjectMapper objectMapper = new ObjectMapper();
