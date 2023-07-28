@@ -11,7 +11,7 @@ public class MetaJson {
 
     @Test
     public void zp_143_621_0_20230712135455() throws IOException {
-        File inputFile = new File("./testData/zp_143_621_0_20230712135455/zp_117_621_0_20230712135847.zpk"); // Replace with the actual path to your input file
+        File inputFile = new File("./testData/zp_143_621_0_20230712135455/zp_143_621_0_20230712135455.zpk"); // Replace with the actual path to your input file
         File meta = new File("meta.json");
 
         cut(inputFile,128,895,  meta);
