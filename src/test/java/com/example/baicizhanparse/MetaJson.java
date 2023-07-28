@@ -14,7 +14,7 @@ public class MetaJson {
         File inputFile = new File("./testData/zp_143_621_0_20230712135455/zp_143_621_0_20230712135455.zpk"); // Replace with the actual path to your input file
         File meta = new File("meta.json");
 
-        cut(inputFile,128,895,  meta);
+        cut(inputFile,128,811,  meta);
         cut(inputFile,1023,2022,  new File("resource.json"));
     }
 
