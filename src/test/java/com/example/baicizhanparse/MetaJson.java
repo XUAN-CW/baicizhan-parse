@@ -9,7 +9,14 @@ import java.nio.file.Files;
 
 public class MetaJson {
 
+    @Test
+    public void zp_143_621_0_20230712135455() throws IOException {
+        File inputFile = new File("./testData/allegation_zp_117_621_0_20230712135847/zp_117_621_0_20230712135847.zpk"); // Replace with the actual path to your input file
+        File meta = new File("meta.json");
 
+        cut(inputFile,128,895,  meta);
+        cut(inputFile,1023,2022,  new File("resource.json"));
+    }
 
     @Test
     public void allegation_zp_117_621_0_20230712135847() throws IOException {
