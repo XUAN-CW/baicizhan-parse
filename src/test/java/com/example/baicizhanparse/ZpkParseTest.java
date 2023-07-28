@@ -62,6 +62,9 @@ public class ZpkParseTest {
             Files.write(jsonLikeText, new File(wordSaveDir,"wiki.json"), Charsets.UTF_8);
         }
 
+
+        getJpg(file,new File(wordSaveDir,"image.jpg"));
+
     }
 
     public static void getJpg(File inputFile,File outputFile) {
@@ -80,9 +83,6 @@ public class ZpkParseTest {
                 fos.write(jpgData);
                 fos.close();
 
-                System.out.println("JPEG data extracted and saved as output.jpg.");
-            } else {
-                System.out.println("JPEG data not found in the file.");
             }
         } catch (IOException e) {
             e.printStackTrace();
