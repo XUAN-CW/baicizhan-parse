@@ -25,7 +25,7 @@ public class ZpkParseTest {
         List<File> zpkFileList = getZpkFileList(new File("C:\\core\\Android\\baicizhan-parse\\metadata\\baicizhan\\zpack\\621"));
         System.out.println(zpkFileList.size());
         for (File fileZpk : zpkFileList) {
-            parseZpk(fileZpk,new File("outcome"));
+            parseZpk(fileZpk,new File("target/outcome"));
         }
     }
 
