@@ -3,21 +3,58 @@ package com.example.baicizhanparse;
 import com.example.baicizhanparse.entity.baicizhan.meta.Meta;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Charsets;
-import com.google.common.base.Utf8;
 import com.google.common.io.Files;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Paths;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ZpkParseTest {
-    public static void main(String[] args) throws IOException {
-        File file = new File("./testData/allegation_zp_117_621_0_20230712135847/zp_117_621_0_20230712135847.zpk");
+
+
+
+    @Test
+    public void parseAll() throws IOException {
+        List<File> zpkFileList = getZpkFileList(new File("C:\\core\\Android\\baicizhan-parse\\metadata\\baicizhan\\zpack\\621"));
+        for (File fileZpk : zpkFileList) {
+            parseZpk(fileZpk,new File("outcome"));
+        }
+    }
+
+    private List<File> getZpkFileList(File directory) throws IOException {
+        List<File> zpkFileList = new ArrayList<>();
+
+        FileVisitor<Path> zpkFileVisitor = new SimpleFileVisitor<>() {
+            @Override
+            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                if (file.toString().toLowerCase().endsWith(".zpk")) {
+                    zpkFileList.add(file.toFile());
+                }
+                return FileVisitResult.CONTINUE;
+            }
+
+            @Override
+            public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
+                return FileVisitResult.CONTINUE;
+            }
+        };
+
+        java.nio.file.Files.walkFileTree(directory.toPath(), zpkFileVisitor);
+
+        return zpkFileList;
+    }
+
+
+
+
+    public static void parseZpk(File file,File wordSaveDir) throws IOException {
         List<String> lines = Files.readLines(file, Charsets.UTF_8);
         // Process the lines as needed
         String metaDataStr = lines.stream().findFirst().get();
@@ -27,8 +64,6 @@ public class ZpkParseTest {
         Pattern sentencePattern = Pattern.compile("\\{\"sentence\":\\\".*?\\}" + sentenceEnd);
         Matcher sentenceMatcher = sentencePattern.matcher(metaDataStr);
 
-
-        File wordSaveDir = new File("outcome");
 
         while (sentenceMatcher.find()) {
             String jsonLikeText = sentenceMatcher.group();
