@@ -15,7 +15,7 @@ public class MetaJson {
     }
 
 
-    private static void cut(File zpk,int srcPos,int length,File saveTo) throws IOException {
+    private static void cut(File zpk,Integer srcPos,Integer length,File saveTo) throws IOException {
         byte[] fileData = Files.readAllBytes(zpk.toPath());
         byte[] jpgData = new byte[length];
         System.arraycopy(fileData, srcPos, jpgData, 0, jpgData.length);
@@ -23,10 +23,11 @@ public class MetaJson {
         FileOutputStream fos = new FileOutputStream(saveTo);
         fos.write(jpgData);
         fos.close();
+        Integer end = srcPos+length;
         System.out.println(saveTo.getAbsolutePath());
-        System.out.println("srcPos "+srcPos);
-        System.out.println("length "+length);
-        System.out.println("end "+(srcPos+length));
+        System.out.format("srcPos %-10d \n",srcPos);
+        System.out.format("length %-10d \n",length);
+        System.out.format("end %-10d \n",end);
     }
 
 }
