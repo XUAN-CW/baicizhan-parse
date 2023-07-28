@@ -71,7 +71,6 @@ public class ZpkParseTest {
             ObjectMapper objectMapper = new ObjectMapper();
             Meta meta = objectMapper.readValue(jsonLikeText, Meta.class);
             jsonLikeText = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(meta);
-            System.out.println("Found sentence-like text: \n" + jsonLikeText);
 
             wordSaveDir = new File(wordSaveDir,meta.getWord());
             wordSaveDir.mkdirs();
@@ -89,7 +88,6 @@ public class ZpkParseTest {
             ObjectMapper objectMapper = new ObjectMapper();
             Object jsonObject = objectMapper.readValue(jsonLikeText, Object.class);
             jsonLikeText = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObject);
-            System.out.println("word: \n" + jsonLikeText);
             Files.write(jsonLikeText, new File(wordSaveDir,"resource.json"), Charsets.UTF_8);
         }
 
@@ -100,7 +98,6 @@ public class ZpkParseTest {
             ObjectMapper objectMapper = new ObjectMapper();
             Object jsonObject = objectMapper.readValue(jsonLikeText, Object.class);
             jsonLikeText = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObject);
-            System.out.println("cnMean: \n" + jsonLikeText);
             Files.write(jsonLikeText, new File(wordSaveDir,"wiki.json"), Charsets.UTF_8);
         }
 
