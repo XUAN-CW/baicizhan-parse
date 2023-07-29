@@ -44,7 +44,11 @@ public class MP3Extractor {
     private static int findMP3StartIndex(byte[] data, int startIndex) {
         // Search for the magic number "ID3" or "49 44 33" in the binary data, starting from the given index.
         for (int i = startIndex; i < data.length - 2; i++) {
-            if (data[i] == 0xFF && data[i + 1] == 0xE3 && data[i + 2] == 0x20) {
+            if (data[i] == 0x49
+                    && data[i + 1] == 0x44
+                    && data[i + 2] == 0x33
+                    && data[i + 3] == 0x04
+                    && data[i + 4] == 0x00) {
                 return i;
             }
         }
