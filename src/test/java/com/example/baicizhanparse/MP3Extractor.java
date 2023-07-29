@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class MP3Extractor {
     public static void main(String[] args) {
-        File inputFile = new File("./testData/allegation_zp_117_621_0_20230712135847/zp_117_621_0_20230712135847.zpk"); // Replace with the actual path to your input file
+        File inputFile = new File("./testData/property/zp_5424_621_0_20230712182758.zpk"); // Replace with the actual path to your input file
         extractAllMP3AudioData(inputFile);
     }
 
@@ -44,7 +44,7 @@ public class MP3Extractor {
     private static int findMP3StartIndex(byte[] data, int startIndex) {
         // Search for the magic number "ID3" or "49 44 33" in the binary data, starting from the given index.
         for (int i = startIndex; i < data.length - 2; i++) {
-            if (data[i] == 0x49 && data[i + 1] == 0x44 && data[i + 2] == 0x33) {
+            if (data[i] == 0xFF && data[i + 1] == 0xE3 && data[i + 2] == 0x20) {
                 return i;
             }
         }
