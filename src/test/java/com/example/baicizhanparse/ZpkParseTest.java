@@ -29,7 +29,7 @@ public class ZpkParseTest {
         int i=1;
         Long now = System.currentTimeMillis();
         for (File fileZpk : zpkFileList) {
-            System.out.print(i++ + "\t");
+            System.out.println(i++ + "\t");
             parseZpk(fileZpk,new File("target/outcome-" + now));
         }
     }
@@ -74,7 +74,7 @@ public class ZpkParseTest {
             ObjectMapper objectMapper = new ObjectMapper();
             Meta meta = objectMapper.readValue(jsonLikeText, Meta.class);
             jsonLikeText = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(meta);
-            
+
             wordSaveDir = new File(wordSaveDir,meta.getWord());
             wordSaveDir.mkdirs();
             Files.write(jsonLikeText, new File(wordSaveDir,"meta.json"), Charsets.UTF_8);
