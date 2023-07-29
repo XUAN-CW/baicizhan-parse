@@ -11,11 +11,9 @@ public class ZpkCut {
 
     @Test
     public void property() throws IOException {
-        File inputFile = new File("./testData/zp_143_621_0_20230712135455/zp_143_621_0_20230712135455.zpk"); // Replace with the actual path to your input file
-        File meta = new File("meta.json");
+        File inputFile = new File("./testData/property/zp_5424_621_0_20230712182758.zpk"); // Replace with the actual path to your input file
 
-        cut(inputFile,128,811,  meta);
-        cut(inputFile,939,1520,  new File("resource.json"));
+        cut(inputFile,0x1535A,1567,  new File("property.mp3"));
     }
 
 
