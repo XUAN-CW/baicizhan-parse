@@ -27,9 +27,10 @@ public class ZpkParseTest {
         List<File> zpkFileList = getZpkFileList(new File("C:\\core\\Android\\baicizhan-parse\\metadata\\baicizhan\\zpack\\621"));
         System.out.println(zpkFileList.size());
         int i=1;
+        Long now = System.currentTimeMillis();
         for (File fileZpk : zpkFileList) {
             System.out.print(i++ + "\t");
-            parseZpk(fileZpk,new File("target/outcome-" + System.currentTimeMillis()));
+            parseZpk(fileZpk,new File("target/outcome-" + now));
         }
     }
 
