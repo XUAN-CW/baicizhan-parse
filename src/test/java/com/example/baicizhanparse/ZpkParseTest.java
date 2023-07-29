@@ -13,6 +13,7 @@ import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,8 +25,10 @@ public class ZpkParseTest {
     public void parseAll() throws IOException {
         List<File> zpkFileList = getZpkFileList(new File("C:\\core\\Android\\baicizhan-parse\\metadata\\baicizhan\\zpack\\621"));
         System.out.println(zpkFileList.size());
+        int i=1;
         for (File fileZpk : zpkFileList) {
-            parseZpk(fileZpk,new File("target/outcome"));
+            System.out.println(i++);
+            parseZpk(fileZpk,new File("target/outcome5"));
         }
     }
 
@@ -72,12 +75,14 @@ public class ZpkParseTest {
             Meta meta = objectMapper.readValue(jsonLikeText, Meta.class);
             jsonLikeText = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(meta);
 
-            if(meta.getWord() == null || meta.getWord() == ""){
+            if(meta.getWord() == null || Objects.equals(meta.getWord(), "")){
                 System.out.println((file.getAbsolutePath()));
             }
 
             wordSaveDir = new File(wordSaveDir,meta.getWord());
-            wordSaveDir.mkdirs();
+            if(!wordSaveDir.mkdirs()){
+                System.out.println(wordSaveDir.getAbsolutePath());
+            }
 
 
             Files.write(jsonLikeText, new File(wordSaveDir,"meta.json"), Charsets.UTF_8);
