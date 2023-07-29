@@ -31,7 +31,7 @@ public class ZpkCut {
 
     @Test
     public void allegation_zp_117_621_0_20230712135847() throws IOException {
-        File inputFile = new File("./testData/allegation_zp_117_621_0_20230712135847/zp_117_621_0_20230712135847.zpk"); // Replace with the actual path to your input file
+        File inputFile = new File(".testData/allegation_zp_117_621_0_20230712135847/allegation/zp_117_621_0_20230712135847.zpk"); // Replace with the actual path to your input file
         File meta = new File("meta.json");
 
         cut(inputFile,128,895,  meta);
