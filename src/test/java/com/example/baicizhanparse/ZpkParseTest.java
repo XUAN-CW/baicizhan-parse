@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class ZpkParseTest {
         int i=1;
         for (File fileZpk : zpkFileList) {
             System.out.print(i++ + "\t");
-            parseZpk(fileZpk,new File("target/outcome5"));
+            parseZpk(fileZpk,new File("target/outcome-" + System.currentTimeMillis()));
         }
     }
 
@@ -59,9 +60,7 @@ public class ZpkParseTest {
 
 
     public static void parseZpk(File file,File wordSaveDir) throws IOException {
-        List<String> lines = Files.readLines(file, Charsets.UTF_8);
-        // Process the lines as needed
-        String metaDataStr = lines.stream().findFirst().get();
+        String metaDataStr = new String(cut(file,0,10000), StandardCharsets.UTF_8);
 
         String sentenceEnd = "\\{\"word\"";
         Pattern sentencePattern = Pattern.compile("\\{\"sentence\":\\\".*?\\}" + sentenceEnd);
@@ -111,6 +110,14 @@ public class ZpkParseTest {
 
         getJpg(file,new File(wordSaveDir,"image.jpg"));
 
+    }
+
+
+    private static byte[] cut(File zpk,Integer srcPos,Integer length) throws IOException {
+        byte[] fileData = java.nio.file.Files.readAllBytes(zpk.toPath());
+        byte[] cutData = new byte[length];
+        System.arraycopy(fileData, srcPos, cutData, 0, cutData.length);
+        return cutData;
     }
 
     public static void getJpg(File inputFile,File outputFile) {
