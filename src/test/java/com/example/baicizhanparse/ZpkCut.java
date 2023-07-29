@@ -10,6 +10,17 @@ import java.nio.file.Files;
 public class ZpkCut {
 
     @Test
+    public void zp_5424_621_0_20230712182758() throws IOException {
+        File inputFile = new File("./testData/zp_143_621_0_20230712135455/zp_143_621_0_20230712135455.zpk"); // Replace with the actual path to your input file
+        File meta = new File("meta.json");
+
+        cut(inputFile,128,811,  meta);
+        cut(inputFile,939,1520,  new File("resource.json"));
+    }
+
+
+
+    @Test
     public void zp_143_621_0_20230712135455() throws IOException {
         File inputFile = new File("./testData/zp_143_621_0_20230712135455/zp_143_621_0_20230712135455.zpk"); // Replace with the actual path to your input file
         File meta = new File("meta.json");
@@ -37,8 +48,7 @@ public class ZpkCut {
         fos.write(jpgData);
         fos.close();
         Integer end = srcPos+length;
-        System.out.printl
-    n(saveTo.getAbsolutePath());
+        System.out.println(saveTo.getAbsolutePath());
         System.out.format("srcPos %-10d %-10x\n",srcPos,srcPos);
         System.out.format("length %-10d %-10x\n",length,length);
         System.out.format("end    %-10d %-10x\n",end,end);
