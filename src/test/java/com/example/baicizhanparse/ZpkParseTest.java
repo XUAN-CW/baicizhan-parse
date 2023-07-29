@@ -61,7 +61,7 @@ public class ZpkParseTest {
 
 
     public static void parseZpk(File file,File wordSaveDir) throws IOException {
-        String metaDataStr = new String(cut(file,0,30000), StandardCharsets.UTF_8);
+        String metaDataStr = new String(cut(file,0,20000), StandardCharsets.UTF_8);
 
         String sentenceEnd = "\\{\"word\"";
         Pattern sentencePattern = Pattern.compile("\\{\"sentence\":\\\".*?\\}" + sentenceEnd);
