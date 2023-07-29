@@ -7,7 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 
-public class MetaJson {
+public class ZpkCut {
 
     @Test
     public void zp_143_621_0_20230712135455() throws IOException {
@@ -37,7 +37,8 @@ public class MetaJson {
         fos.write(jpgData);
         fos.close();
         Integer end = srcPos+length;
-        System.out.println(saveTo.getAbsolutePath());
+        System.out.printl
+    n(saveTo.getAbsolutePath());
         System.out.format("srcPos %-10d %-10x\n",srcPos,srcPos);
         System.out.format("length %-10d %-10x\n",length,length);
         System.out.format("end    %-10d %-10x\n",end,end);
