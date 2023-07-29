@@ -9,7 +9,7 @@ import java.util.List;
 public class ExtractMP3Files {
 
     public static void main(String[] args) {
-        String inputFilePath = "C:\\core\\Android\\baicizhan-parse\\testData\\zp_143_621_0_20230712135455\\zp_143_621_0_20230712135455.zpk";
+        String inputFilePath = "./testData/property/zp_5424_621_0_20230712182758.zpk";
         String outputFolderPath = ".";
 
         try {
@@ -28,7 +28,7 @@ public class ExtractMP3Files {
         }
     }
 
-    // Method to extract MP3 files from binary data
+    // Method to extract MP3 files from binary data based on the synchronization pattern
     private static List<byte[]> extractMP3Files(byte[] binaryData) {
         List<byte[]> mp3FilesData = new ArrayList<>();
         int startPos = 0;
@@ -56,18 +56,16 @@ public class ExtractMP3Files {
         return mp3FilesData;
     }
 
-    // Method to check if the buffer contains the MP3 header (frame synchronization pattern)
+    // Method to check if the buffer contains the MP3 frame synchronization pattern
     private static boolean isMP3Header(byte[] buffer, int pos) {
         // Check if the buffer has enough bytes to read the header
-        if (pos + 3 >= buffer.length) {
+        if (pos + 2 >= buffer.length) {
             return false;
         }
 
-        // Verify the frame synchronization pattern for MPEG-1 Layer III (MP3)
+        // Verify the MP3 frame synchronization pattern "FF E3 20"
         return (buffer[pos] & 0xFF) == 0xFF &&
-                ((buffer[pos + 1] & 0xE0) == 0xE0) &&
-                ((buffer[pos + 1] & 0x18) != 0x08) &&
-                ((buffer[pos + 2] & 0xF0) != 0xF0);
+               (buffer[pos + 1] & 0xFF) == 0xE3 &&
+               (buffer[pos + 2] & 0xF0) == 0x20;
     }
-
 }
