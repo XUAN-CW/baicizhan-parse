@@ -77,6 +77,9 @@ public class ZpkParseTest {
             Meta meta = objectMapper.readValue(jsonLikeText, Meta.class);
             jsonLikeText = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(meta);
 
+            if(meta.getWord().equals("property")){
+                System.out.println(file.getAbsolutePath());
+            }
             wordSaveDir = new File(wordSaveDir,meta.getWord());
             wordSaveDir.mkdirs();
             Files.write(jsonLikeText, new File(wordSaveDir,"meta.json"), Charsets.UTF_8);
