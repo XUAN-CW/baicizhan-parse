@@ -1,11 +1,13 @@
 package com.example.baicizhanparse;
 
 import com.example.baicizhanparse.entity.baicizhan.meta.Meta;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -66,14 +68,15 @@ public class ZpkParseTest {
     public static void parseZpk(File file,File wordSaveDir) throws IOException {
         String metaDataStr = new String(cut(file,128,10000), StandardCharsets.UTF_8);
 
-        String sentenceEnd = "\\{\"word\"";
-        Pattern sentencePattern = Pattern.compile("\\{\"sentence\":\\\".*?\\}" + sentenceEnd);
-        Matcher sentenceMatcher = sentencePattern.matcher(metaDataStr);
-
-
-        if(sentenceMatcher.find()) {
-            String jsonLikeText = sentenceMatcher.group();
-            jsonLikeText = jsonLikeText.substring(0,jsonLikeText.length() - sentenceEnd.length() + 1);
+//        String sentenceEnd = "\\{\"word\"";
+//        Pattern sentencePattern = Pattern.compile("\\{\"sentence\":\\\".*?\\}" + sentenceEnd);
+//        Matcher sentenceMatcher = sentencePattern.matcher(metaDataStr);
+//
+//
+//        if(sentenceMatcher.find()) {
+//            String jsonLikeText = sentenceMatcher.group();
+//            jsonLikeText = jsonLikeText.substring(0,jsonLikeText.length() - sentenceEnd.length() + 1);
+          String jsonLikeText = extractFirstJson(cut(file,128,10000));
             ObjectMapper objectMapper = new ObjectMapper();
             Meta meta = objectMapper.readValue(jsonLikeText, Meta.class);
             jsonLikeText = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(meta);
@@ -81,9 +84,9 @@ public class ZpkParseTest {
             wordSaveDir = new File(wordSaveDir,meta.getWord());
             wordSaveDir.mkdirs();
             Files.write(jsonLikeText, new File(wordSaveDir,"meta.json"), Charsets.UTF_8);
-        }else {
-            System.out.println("err "+ file.getAbsolutePath());
-        }
+//        }else {
+//            System.out.println("err "+ file.getAbsolutePath());
+//        }
 
 //        String wordEnd = "}]}";
 //        Pattern wordPattern = Pattern.compile("\\{\"word\":\\{.*?" + wordEnd);
@@ -110,6 +113,36 @@ public class ZpkParseTest {
 
         getJpg(file,new File(wordSaveDir,"image.jpg"));
 
+    }
+
+
+    public static String extractFirstJson(byte[] textBytes) {
+        String text = new String(textBytes, StandardCharsets.UTF_8);
+        int start = text.indexOf('{');
+        if (start == -1) {
+            return null;
+        }
+
+        int count = 1;
+        int end = 0;
+        for (int i = start + 1; i < text.length(); i++) {
+            char c = text.charAt(i);
+            if (c == '{') {
+                count++;
+            } else if (c == '}') {
+                count--;
+                if (count == 0) {
+                    end = i + 1;
+                    break;
+                }
+            }
+        }
+
+        if (count != 0) {
+            return null;
+        }
+
+        return text.substring(start, end);
     }
 
 
