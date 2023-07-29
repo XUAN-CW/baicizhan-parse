@@ -27,7 +27,7 @@ public class ZpkParseTest {
         System.out.println(zpkFileList.size());
         int i=1;
         for (File fileZpk : zpkFileList) {
-            System.out.println(i++);
+            System.out.print(i++ + "\t");
             parseZpk(fileZpk,new File("target/outcome5"));
         }
     }
@@ -68,24 +68,22 @@ public class ZpkParseTest {
         Matcher sentenceMatcher = sentencePattern.matcher(metaDataStr);
 
 
-        while (sentenceMatcher.find()) {
+        if(sentenceMatcher.find()) {
             String jsonLikeText = sentenceMatcher.group();
             jsonLikeText = jsonLikeText.substring(0,jsonLikeText.length() - sentenceEnd.length() + 1);
             ObjectMapper objectMapper = new ObjectMapper();
             Meta meta = objectMapper.readValue(jsonLikeText, Meta.class);
             jsonLikeText = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(meta);
-
+            System.out.println("  " + file.getAbsolutePath());
             if(meta.getWord() == null || Objects.equals(meta.getWord(), "")){
                 System.out.println((file.getAbsolutePath()));
             }
 
             wordSaveDir = new File(wordSaveDir,meta.getWord());
-            if(!wordSaveDir.mkdirs()){
-                System.out.println(wordSaveDir.getAbsolutePath());
-            }
-
-
+            wordSaveDir.mkdirs();
             Files.write(jsonLikeText, new File(wordSaveDir,"meta.json"), Charsets.UTF_8);
+        }else {
+            System.out.println("err "+ file.getAbsolutePath());
         }
 
 //        String wordEnd = "}]}";
