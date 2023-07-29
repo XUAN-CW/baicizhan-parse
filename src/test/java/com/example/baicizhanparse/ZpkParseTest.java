@@ -29,7 +29,10 @@ public class ZpkParseTest {
         int i=1;
         Long now = System.currentTimeMillis();
         for (File fileZpk : zpkFileList) {
-            System.out.println(i++ + "\t");
+//            System.out.println(i++ + "\t");
+            if(fileZpk.getAbsolutePath().endsWith("zp_4208_621_0_20230710172612.zpk")){
+                System.out.println(fileZpk.getAbsolutePath());
+            }
             parseZpk(fileZpk,new File("target/outcome-" + now));
         }
     }
@@ -61,7 +64,7 @@ public class ZpkParseTest {
 
 
     public static void parseZpk(File file,File wordSaveDir) throws IOException {
-        String metaDataStr = new String(cut(file,0,20000), StandardCharsets.UTF_8);
+        String metaDataStr = new String(cut(file,128,10000), StandardCharsets.UTF_8);
 
         String sentenceEnd = "\\{\"word\"";
         Pattern sentencePattern = Pattern.compile("\\{\"sentence\":\\\".*?\\}" + sentenceEnd);
