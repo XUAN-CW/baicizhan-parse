@@ -31,10 +31,6 @@ public class ZpkParseTest {
         int i=1;
         Long now = System.currentTimeMillis();
         for (File fileZpk : zpkFileList) {
-//            System.out.println(i++ + "\t");
-            if(fileZpk.getAbsolutePath().endsWith("zp_4208_621_0_20230710172612.zpk")){
-                System.out.println(fileZpk.getAbsolutePath());
-            }
             parseZpk(fileZpk,new File("target/outcome-" + now));
         }
     }
