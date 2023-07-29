@@ -10,7 +10,7 @@ import java.nio.file.Files;
 public class ZpkCut {
 
     @Test
-    public void zp_5424_621_0_20230712182758() throws IOException {
+    public void property() throws IOException {
         File inputFile = new File("./testData/zp_143_621_0_20230712135455/zp_143_621_0_20230712135455.zpk"); // Replace with the actual path to your input file
         File meta = new File("meta.json");
 
